@@ -1,34 +1,10 @@
-## Your amazing project
+# Rock Paper Scissors cycle.js coding challenge.
 
-Thanks for using the `one-fits-all` flavor.
+## Prerequisites
+- Node.js and `npm` (tested on v12.13.0 and v6.12.0).
+- (Nice to have) Some knowledge of cycle.js and Observables / streams.
 
-### Using your app
+## XD prototypes
 
-Run in development mode: `npm start`
-Build a production build: `npm run build`
-Run the unit tests: `npm test`
-
-### Extending the configuration
-
-If you want to add custom config to webpack, you can do it! Just edit the `webpack.config.js` in your app's root directory. It will be merged with the default config.
-
-Example: Adding the progress bar plugin:
-```javascript
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-
-module.exports = {
-    plugins: [
-        new ProgressBarPlugin()
-    ]
-}
-```
-Example: Add API proxy for devServer
-```javascript
-module.exports = {
-    devServer: {
-        proxy: {
-            "/api": "http://localhost:3000"
-        }
-    }
-}
-```
+Desktop: https://xd.adobe.com/view/b856d87b-789d-402a-bf21-5405d11ce33b-ed05/
+Mobile: https://xd.adobe.com/view/7e42c524-a94c-4b67-acc5-bf730abd678c-2b11/

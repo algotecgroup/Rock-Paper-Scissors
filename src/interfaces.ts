@@ -1,12 +1,13 @@
 import { Stream } from 'xstream';
-import { DOMSource, VNode } from '@cycle/dom';
+import { MainDOMSource, VNode } from '@cycle/dom';
 
 export type Component = (s: Sources) => Sinks;
 
 export interface Sources {
-    DOM: DOMSource;
+  DOM: MainDOMSource;
+  resize: Stream<number>;
 }
 
 export interface Sinks {
-    DOM?: Stream<VNode>;
+  DOM?: Stream<VNode>;
 }

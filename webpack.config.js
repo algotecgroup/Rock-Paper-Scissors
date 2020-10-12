@@ -1,15 +1,50 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const appPath = (...names) => path.join(process.cwd(), ...names);
-
-//This will be merged with the config from the flavor
 module.exports = {
-    entry: {
-        main: [appPath('src', 'index.ts'), appPath('src', 'css', 'styles.scss')]
+  context: path.resolve(__dirname, 'src'),
+  devtool: 'inline-source-map',
+  entry: {
+    main: [
+      'index.ts',
+      'css/styles.scss'
+    ]
+  },
+  module: {
+    rules: [{
+      exclude: /node_modules/,
+      test: /.ts$/,
+      use: [ 'ts-loader' ]
+    }, {
+      test: /\.s?css$/,
+      use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader'
+      ]
+    }, {
+      test: /\.(eot|jpg|jpeg|png|svg|ttf|woff2?)$/,
+      use: [ 'file-loader' ]
+    }]
+  },
+  output: {
+    filename: '[name].[hash].bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    publicPath: '/'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.ejs'
+    })
+  ],
+  resolve: {
+    alias: {
+      assets: path.resolve(__dirname, 'assets'),
     },
-    output: {
-        filename: 'bundle.[hash].js',
-        path: appPath('build'),
-        publicPath: '/'
-    }
-};
+    extensions: [ '.js', '.ts' ],
+    modules: [
+      path.resolve(__dirname, 'src'),
+      'node_modules'
+    ]
+  }
+}

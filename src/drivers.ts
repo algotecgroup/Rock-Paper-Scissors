@@ -1,10 +1,29 @@
 import { makeDOMDriver } from '@cycle/dom';
-import switchPath from 'switch-path';
+import xs, { MemoryStream } from 'xstream';
 
 import { Component } from './interfaces';
 
+function resizeDriver(): MemoryStream<number> {
+  let handler: () => void;
+
+  return xs
+    .createWithMemory({
+      start(listener) {
+        handler = () => {
+          listener.next(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handler);
+      },
+      stop() {
+        window.removeEventListener('resize', handler);
+      }
+    });
+}
+
 const driversFactories: any = {
-  DOM: () => makeDOMDriver('#app')
+  DOM: () => makeDOMDriver('#app'),
+  resize: () => resizeDriver
 };
 
 export function getDrivers(): any {
@@ -13,6 +32,4 @@ export function getDrivers(): any {
     .reduce((a, c) => ({ ...a, ...c }), {});
 }
 
-export const driverNames = Object.keys(driversFactories)
-  .filter(name => name !== 'history')
-  .concat(['state', 'router']);
+export const driverNames = Object.keys(driversFactories);
