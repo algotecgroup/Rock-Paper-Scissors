@@ -1,5 +1,7 @@
 # Rock Paper Scissors cycle.js coding challenge.
 
+![Rock Paper Scissors](./Rock-Paper-Scissors.png)
+
 ## Prerequisites
 - Node.js and `npm` (tested on v12.13.0 and v6.12.0).
 - (Nice to have) Some knowledge of cycle.js and Observables / streams.
